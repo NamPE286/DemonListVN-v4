@@ -5,6 +5,7 @@ import { VisuallyHidden } from "@react-aria/visually-hidden";
 import { SwitchProps, useSwitch } from "@nextui-org/switch";
 import { useTheme } from "next-themes";
 import { useIsSSR } from "@react-aria/ssr";
+import { IconSun, IconMoon } from "@tabler/icons-react";
 import clsx from "clsx";
 
 export interface ThemeSwitchProps {
@@ -68,7 +69,7 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
           ),
         })}
       >
-        {!isSelected || isSSR ? <p>on</p> : <p>off</p>}
+        {!isSelected || isSSR ? <IconMoon /> : <IconSun />}
       </div>
     </Component>
   );
