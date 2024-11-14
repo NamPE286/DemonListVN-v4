@@ -45,9 +45,7 @@ export const ProfileButton = () => {
     ],
     [
       {
-        onPress: () => {
-          setIsSignedIn(false);
-        },
+        onPress: () => {},
         icon: <IconSettings size={21} color="gray" />,
         title: "Settings",
         textColor: "",
