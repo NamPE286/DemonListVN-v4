@@ -27,8 +27,8 @@ export const Navbar = () => {
 
   const navlinks: NavLink[] = [
     { link: "/", title: "Dashboard" },
-    { link: "/dl", title: "Demon List" },
-    { link: "/fl", title: "Featured List" },
+    { link: "/list/dl", title: "Demon List" },
+    { link: "/list/fl", title: "Featured List" },
   ];
 
   useEffect(() => {
@@ -46,7 +46,7 @@ export const Navbar = () => {
         <DropdownMenu aria-label="nav" items={navlinks}>
           {(item) => (
             <DropdownItem key={item.link}>
-              <Link href="/test" className="w-full text-sm text-current">
+              <Link href={item.link} className="w-full text-sm text-current">
                 {item.title}
               </Link>
             </DropdownItem>
