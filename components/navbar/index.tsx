@@ -7,14 +7,14 @@ import {
   DropdownMenu,
   DropdownItem,
   Button,
-  Input,
+  Link,
 } from "@nextui-org/react";
 import { IconMenu2 } from "@tabler/icons-react";
 import { ThemeSwitch } from "@/components/theme-switch";
-import Link from "next/link";
 import { useTheme } from "next-themes";
 import { ProfileButton } from "./profile-button";
 import { SearchButton } from "./search-button";
+import { NotificationButton } from "@/components/navbar/notification-button";
 
 interface NavLink {
   link: string;
@@ -29,7 +29,6 @@ export const Navbar = () => {
     { link: "/", title: "Dashboard" },
     { link: "/dl", title: "Demon List" },
     { link: "/fl", title: "Featured List" },
-    { link: "/settings", title: "Settings" },
   ];
 
   useEffect(() => {
@@ -45,7 +44,13 @@ export const Navbar = () => {
           </Button>
         </DropdownTrigger>
         <DropdownMenu aria-label="nav" items={navlinks}>
-          {(item) => <DropdownItem key={item.link}>{item.title}</DropdownItem>}
+          {(item) => (
+            <DropdownItem key={item.link}>
+              <Link href="/test" className="w-full text-sm text-current">
+                {item.title}
+              </Link>
+            </DropdownItem>
+          )}
         </DropdownMenu>
       </Dropdown>
     );
@@ -68,6 +73,7 @@ export const Navbar = () => {
       <div className="ml-auto flex gap-[10px]">
         <ThemeSwitch />
         <SearchButton />
+        <NotificationButton />
         <ProfileButton />
       </div>
     </div>

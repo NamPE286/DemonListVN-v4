@@ -69,7 +69,7 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
           ),
         })}
       >
-        {!isSelected || isSSR ? <IconMoon /> : <IconSun />}
+        {!isSelected || isSSR ? <IconMoon color="gray" /> : <IconSun color="gray" />}
       </div>
     </Component>
   );
