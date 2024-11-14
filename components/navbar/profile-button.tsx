@@ -66,10 +66,10 @@ export const ProfileButton = () => {
           </div>
           {navLinkGroups.map((group, index) => {
             return (
-              <div>
+              <div key={index}>
                 {group.map((item) => {
                   return (
-                    <Button className="h-[35px] w-full justify-start bg-transparent px-3 hover:bg-default">
+                    <Button key={item.title} className="h-[35px] w-full justify-start bg-transparent px-3 hover:bg-default">
                       {item.icon}{" "}
                       <span
                         className={
