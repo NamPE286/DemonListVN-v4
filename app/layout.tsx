@@ -41,12 +41,10 @@ export default function RootLayout({
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-          <div className="relative flex flex-col h-screen">
+          <div className="relative flex h-screen flex-col">
             <Navbar />
-            <main className="container mx-[30px] pt-6 flex-grow">
-              {children}
-            </main>
-            <footer className="w-full flex items-center justify-center py-3">
+            <main className="mx-[30px] flex-grow pt-6">{children}</main>
+            <footer className="flex w-full items-center justify-center py-3">
               Demon List VN
             </footer>
           </div>

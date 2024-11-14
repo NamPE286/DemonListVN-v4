@@ -7,13 +7,14 @@ import {
   DropdownMenu,
   DropdownItem,
   Button,
-  Avatar,
+  Input,
 } from "@nextui-org/react";
 import { IconMenu2 } from "@tabler/icons-react";
 import { ThemeSwitch } from "@/components/theme-switch";
 import Link from "next/link";
 import { useTheme } from "next-themes";
-import { ProfileButton } from "@/components/profile-button";
+import { ProfileButton } from "./profile-button";
+import { SearchButton } from "./search-button";
 
 interface NavLink {
   link: string;
@@ -59,13 +60,14 @@ export const Navbar = () => {
   };
 
   return (
-    <div className="h-[65px] flex items-center pl-[30px] pr-[30px]">
+    <div className="flex h-[65px] items-center px-[15px] sm:px-[30px]">
       <div className="flex items-center gap-[10px]">
         <Link href="/">{icon()}</Link>
         {menuButton()}
       </div>
       <div className="ml-auto flex gap-[10px]">
         <ThemeSwitch />
+        <SearchButton />
         <ProfileButton />
       </div>
     </div>
