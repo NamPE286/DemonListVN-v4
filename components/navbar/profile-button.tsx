@@ -15,6 +15,7 @@ import {
   IconLogout,
   IconPlus,
   IconBrandGoogleFilled,
+  IconSettings,
 } from "@tabler/icons-react";
 import { ReactElement, useState } from "react";
 
@@ -33,13 +34,23 @@ export const ProfileButton = () => {
         onPress: () => {},
         icon: <IconUser size={21} color="gray" />,
         title: "Profile",
-        textColor: "default",
+        textColor: "",
       },
       {
         onPress: () => {},
         icon: <IconSend size={21} color="gray" />,
         title: "Submissions",
-        textColor: "default",
+        textColor: "",
+      },
+    ],
+    [
+      {
+        onPress: () => {
+          setIsSignedIn(false);
+        },
+        icon: <IconSettings size={21} color="gray" />,
+        title: "Settings",
+        textColor: "",
       },
     ],
     [

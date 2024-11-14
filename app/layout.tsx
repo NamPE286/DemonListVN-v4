@@ -44,8 +44,12 @@ export default function RootLayout({
           <div className="relative flex h-screen flex-col">
             <Navbar />
             <main className="mx-[30px] flex-grow pt-6">{children}</main>
-            <footer className="flex w-full items-center justify-center py-3">
-              Demon List VN
+            <footer className="flex w-full items-center justify-center py-3 text-center text-foreground-500">
+              <p>
+                © Copyright 2020-2024 demonlistvn.com. <br />
+                All rights reserved demonlistvn.com and Demon List VN are in no
+                way affiliated with RobTopGamesAB ®
+              </p>
             </footer>
           </div>
         </Providers>
