@@ -38,8 +38,8 @@ export const SearchButton = () => {
     return (
       <>
         <Button
-          onPress={onOpen}
           className="hidden h-10 w-[200px] justify-start bg-default-400/20 px-[12px] font-normal text-default-500 dark:bg-default-500/20 sm:flex"
+          onPress={onOpen}
         >
           <IconSearch size={18} />
           <span>Search</span>
@@ -48,9 +48,9 @@ export const SearchButton = () => {
           </Kbd>
         </Button>
         <Button
-          onPress={onOpen}
           isIconOnly
           className="bg-transparent sm:hidden"
+          onPress={onOpen}
         >
           <IconSearch color="gray" />
         </Button>
@@ -60,6 +60,7 @@ export const SearchButton = () => {
 
   const searchInput = () => (
     <Input
+      // eslint-disable-next-line jsx-a11y/no-autofocus
       autoFocus
       isClearable
       classNames={{
@@ -94,7 +95,7 @@ export const SearchButton = () => {
     return (
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent className="w-[550px] max-w-full bg-transparent">
-          {(onClose) => (
+          {() => (
             <div className="flex flex-col-reverse sm:flex-col">
               {searchInput()}
               <div className="flex flex-col gap-[10px]">
@@ -112,11 +113,11 @@ export const SearchButton = () => {
                   </CardHeader>
                   <CardBody>
                     <Link
-                      href="#!"
-                      color="foreground"
                       className="flex gap-[10px]"
+                      color="foreground"
+                      href="#!"
                     >
-                      <Avatar showFallback src="" size="sm" />
+                      <Avatar showFallback size="sm" src="" />
                       NamPE
                     </Link>
                   </CardBody>
