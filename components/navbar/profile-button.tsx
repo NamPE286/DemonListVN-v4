@@ -7,6 +7,7 @@ import {
   PopoverTrigger,
   PopoverContent,
   Divider,
+  Skeleton,
 } from "@nextui-org/react";
 import {
   IconUser,
@@ -16,7 +17,10 @@ import {
   IconBrandGoogleFilled,
   IconSettings,
 } from "@tabler/icons-react";
-import { ReactElement, useState } from "react";
+import { ReactElement } from "react";
+
+import { client } from "@/utils/client";
+import { useUser } from "@/app/providers";
 
 interface NavLink {
   onPress: () => void;
@@ -26,7 +30,26 @@ interface NavLink {
 }
 
 export const ProfileButton = () => {
-  const [isSignedIn, setIsSignedIn] = useState(true);
+  const user = useUser();
+
+  function signIn() {
+    client.db.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        queryParams: {
+          access_type: "offline",
+          prompt: "consent",
+        },
+        redirectTo: window.location.origin,
+      },
+    });
+  }
+
+  function signOut() {
+    client.db.auth.signOut();
+    window.location.reload();
+  }
+
   const navLinkGroups: NavLink[][] = [
     [
       {
@@ -52,9 +75,7 @@ export const ProfileButton = () => {
     ],
     [
       {
-        onPress: () => {
-          setIsSignedIn(false);
-        },
+        onPress: signOut,
         icon: <IconLogout color="#f31260" size={21} />,
         title: "Sign Out",
         textColor: "danger",
@@ -62,16 +83,31 @@ export const ProfileButton = () => {
     ],
   ];
 
-  if (!isSignedIn) {
+  if (typeof user === "undefined") {
     return (
       <Popover placement="bottom-end" showArrow={true}>
         <PopoverTrigger>
           <Button isIconOnly className="rounded-full bg-transparent">
-            <Avatar showFallback src="test" />
+            <Avatar showFallback src="" />
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent className="w-[250px] max-w-full px-[20px] py-[20px]">
+          <Skeleton className="flex h-12 w-full rounded-lg" />
+        </PopoverContent>
+      </Popover>
+    );
+  }
+
+  if (user === null) {
+    return (
+      <Popover placement="bottom-end" showArrow={true}>
+        <PopoverTrigger>
+          <Button isIconOnly className="rounded-full bg-transparent">
+            <Avatar showFallback src="" />
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-[250px] max-w-full py-[20px]">
-          <Button color="primary" onPress={() => setIsSignedIn(true)}>
+          <Button color="primary" onPress={signIn}>
             <IconBrandGoogleFilled /> Sign in with Google
           </Button>
         </PopoverContent>
@@ -83,7 +119,10 @@ export const ProfileButton = () => {
     <Popover placement="bottom-end" showArrow={true}>
       <PopoverTrigger>
         <Button isIconOnly className="rounded-full bg-transparent">
-          <Avatar showFallback src="test" />
+          <Avatar
+            showFallback
+            src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/avatars/${user.uid}.jpg`}
+          />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[350px] max-w-full">
@@ -94,9 +133,9 @@ export const ProfileButton = () => {
               showFallback
               className="h-[100px] w-[100px]"
               size="lg"
-              src=""
+              src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/avatars/${user.uid}.jpg`}
             />
-            <b className="text-xl">Hello, Player</b>
+            <b className="text-xl">Hello, {user.name}</b>
           </div>
           <div className="my-[15px] flex justify-center">
             <Button className="font-bold" color="primary" variant="flat">
@@ -114,7 +153,7 @@ export const ProfileButton = () => {
                       className="h-[35px] w-full justify-start bg-transparent px-3 hover:bg-default"
                       onPress={item.onPress}
                     >
-                      {item.icon}{" "}
+                      {item.icon}
                       <span
                         className={
                           item.textColor ? `text-${item.textColor}` : ""
