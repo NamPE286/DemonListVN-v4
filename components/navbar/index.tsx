@@ -10,10 +10,12 @@ import {
   Link,
 } from "@nextui-org/react";
 import { IconMenu2 } from "@tabler/icons-react";
-import { ThemeSwitch } from "@/components/theme-switch";
 import { useTheme } from "next-themes";
+
 import { ProfileButton } from "./profile-button";
 import { SearchButton } from "./search-button";
+
+import { ThemeSwitch } from "@/components/theme-switch";
 import { NotificationButton } from "@/components/navbar/notification-button";
 
 interface NavLink {
@@ -23,7 +25,7 @@ interface NavLink {
 
 export const Navbar = () => {
   const [isMounted, setIsMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const { theme } = useTheme();
 
   const navlinks: NavLink[] = [
     { link: "/", title: "Dashboard" },
@@ -39,14 +41,14 @@ export const Navbar = () => {
     return (
       <Dropdown>
         <DropdownTrigger>
-          <Button className="bg-transparent" isIconOnly>
+          <Button isIconOnly className="bg-transparent">
             <IconMenu2 />
           </Button>
         </DropdownTrigger>
         <DropdownMenu aria-label="nav" items={navlinks}>
           {(item) => (
             <DropdownItem key={item.link}>
-              <Link href={item.link} className="w-full text-sm text-current">
+              <Link className="w-full text-sm text-current" href={item.link}>
                 {item.title}
               </Link>
             </DropdownItem>
@@ -58,10 +60,10 @@ export const Navbar = () => {
 
   const icon = () => {
     if (isMounted && theme === "dark") {
-      return <img src="/favicon.ico" className="h-[30px] invert"></img>;
+      return <img alt="" className="h-[30px] invert" src="/favicon.ico" />;
     }
 
-    return <img src="/favicon.ico" className="h-[30px]"></img>;
+    return <img alt="" className="h-[30px]" src="/favicon.ico" />;
   };
 
   return (

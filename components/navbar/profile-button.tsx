@@ -8,7 +8,6 @@ import {
   PopoverContent,
   Divider,
 } from "@nextui-org/react";
-
 import {
   IconUser,
   IconSend,
@@ -32,13 +31,13 @@ export const ProfileButton = () => {
     [
       {
         onPress: () => {},
-        icon: <IconUser size={21} color="gray" />,
+        icon: <IconUser color="gray" size={21} />,
         title: "Profile",
         textColor: "",
       },
       {
         onPress: () => {},
-        icon: <IconSend size={21} color="gray" />,
+        icon: <IconSend color="gray" size={21} />,
         title: "Submissions",
         textColor: "",
       },
@@ -46,7 +45,7 @@ export const ProfileButton = () => {
     [
       {
         onPress: () => {},
-        icon: <IconSettings size={21} color="gray" />,
+        icon: <IconSettings color="gray" size={21} />,
         title: "Settings",
         textColor: "",
       },
@@ -56,7 +55,7 @@ export const ProfileButton = () => {
         onPress: () => {
           setIsSignedIn(false);
         },
-        icon: <IconLogout size={21} color="#f31260" />,
+        icon: <IconLogout color="#f31260" size={21} />,
         title: "Sign Out",
         textColor: "danger",
       },
@@ -67,7 +66,7 @@ export const ProfileButton = () => {
     return (
       <Popover placement="bottom-end" showArrow={true}>
         <PopoverTrigger>
-          <Button className="rounded-full bg-transparent" isIconOnly>
+          <Button isIconOnly className="rounded-full bg-transparent">
             <Avatar showFallback src="test" />
           </Button>
         </PopoverTrigger>
@@ -83,7 +82,7 @@ export const ProfileButton = () => {
   return (
     <Popover placement="bottom-end" showArrow={true}>
       <PopoverTrigger>
-        <Button className="rounded-full bg-transparent" isIconOnly>
+        <Button isIconOnly className="rounded-full bg-transparent">
           <Avatar showFallback src="test" />
         </Button>
       </PopoverTrigger>
@@ -93,9 +92,9 @@ export const ProfileButton = () => {
             <Avatar
               isBordered
               showFallback
-              src=""
-              size="lg"
               className="h-[100px] w-[100px]"
+              size="lg"
+              src=""
             />
             <b className="text-xl">Hello, Player</b>
           </div>
