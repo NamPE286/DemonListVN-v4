@@ -14,7 +14,7 @@ import { ThemeProviderProps } from "next-themes/dist/types";
 
 import { client } from "@/utils/client";
 
-type TUser = Awaited<ReturnType<typeof client.player.getPlayerByUID>>;
+type TUser = Awaited<ReturnType<typeof client.auth.getUserData>>;
 
 const UserContext = createContext<TUser | null | undefined>(undefined);
 
@@ -28,15 +28,7 @@ export function Providers({ children, themeProps }: ProvidersProps) {
   const router = useRouter();
 
   async function getUser() {
-    const { data, error } = await client.db.auth.getUser();
-
-    if (error || !data.user) {
-      setUser(null);
-
-      return;
-    }
-
-    setUser(await client.player.getPlayerByUID(data.user.id));
+    setUser(await client.auth.getUserData());
   }
 
   useEffect(() => {

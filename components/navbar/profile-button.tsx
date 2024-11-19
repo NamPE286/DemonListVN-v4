@@ -33,7 +33,7 @@ export const ProfileButton = () => {
   const user = useUser();
 
   function signIn() {
-    client.db.auth.signInWithOAuth({
+    client.auth.signInWithOAuth({
       provider: "google",
       options: {
         queryParams: {
@@ -46,7 +46,7 @@ export const ProfileButton = () => {
   }
 
   function signOut() {
-    client.db.auth.signOut();
+    client.auth.signOut();
     window.location.reload();
   }
 
